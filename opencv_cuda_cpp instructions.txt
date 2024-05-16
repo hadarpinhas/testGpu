@@ -1,11 +1,17 @@
+Windows installation
 
-The lib, include, bin is in C:\Program Files\NVIDIA\CUDNN\v9.1 when using cudnn installer
-but still needed to add to path, eg, C:\Program Files\NVIDIA\CUDNN\v9.1\bin\12.4, same for include and lib
+instal CMake, during installation choose add to path or after add to system environmental variable, cmake:  C:\Program Files\CMake\bin
+
+Trying to install cuda 11.8 with cudnn 9.1.1 installer (in the installer only 11.8) and adding to path the bin dir:
+C:\Program Files\NVIDIA\CUDNN\v9.1\bin\11.8
+C:\Program Files\NVIDIA\CUDNN\v9.1\include\11.8
+C:\Program Files\NVIDIA\CUDNN\v9.1\lib\11.8\x64
 
 open cmake gui
 Browse source:"C:\Users\hadar\Documents\opencvBuilds\opencv-4.5.5"
 browse build: C:\Users\hadar\Documents\opencvBuilds\build
 press configure: vs2019, in the second line choose x64, then press finish
+
 once finished, choose from search:
 1. with_cuda
 2. opencv_dnn_cuda
@@ -31,3 +37,74 @@ cmd:
 cmake --build "C:\Users\hadar\Documents\opencvBuilds\build"  --target INSTALL --config Release
 
 should see that CMakeCache.txt was creted in C:\Users\hadar\opencv\build so the binaries should be created there 
+
+add to path:
+C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\bin
+C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib
+
+open vs code, install extensions: c/c++ and cmake tools, might need to restart
+first time, press ctrl+shift+p for command pallete and search cmake:configure, choose vs 2019 86 x64.
+then, ctrl+shift+p search cmake: quick start -> project name: testgpucpp -> c++ -> executable.  
+
+
+############################  CMakeLists.txt example ##########################################
+  
+'''make sure the VERSION < 3.27 (may have to play with the differnet versions), any higher will lead to deprecation issues such as
+ Could not find a package configuration file provided by "CUDA" (requested
+ version 11.8) with any of the following names:
+	CUDAConfig.cmake
+	cuda-config.cmake
+'''
+
+cmake_minimum_required(VERSION 3.5)
+project(testgpucpp VERSION 0.1.0 LANGUAGES C CXX)
+
+include(CTest)
+enable_testing()
+
+find_package( OpenCV REQUIRED)
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+
+add_executable(testgpucpp main.cpp)
+
+target_link_libraries( testgpucpp ${Opencv_LIBS} )
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
+#################################### end of CMakeLists.txt example ########################################
+
+
+#################################### working on visual studio 2019:####################################
+right click on the project -> properties:
+
+On top see Configuration: Active(Release), Platform: Active(x64)
+
+Configuration properties -> VC++ Directories:
+include Directories -> scroll down -> edit -> create new line -> C:\Users\hadar\Documents\opencvBuilds\build\install\include
+Library Directories -> scroll down -> edit -> create new line -> C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib
+press Apply
+
+Configuration properties -> C/C++:
+General -> Additional Include Directories -> C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\include\
+press Apply
+
+Configuration properties -> Linker:
+General -> Additional Include Directories -> C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\lib\x64
+Input -> Additional dependencies -> scroll down -> edit -> opencv_world455.lib (or whatever opencv version opencv_worldxxx.lib you have in C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib)
+I also throuh in every npp.lib after I had linker error which had npp in it:
+cuda.lib
+cudart.lib
+nppc.lib
+nppial.lib
+nppicc.lib
+nppidei.lib
+nppif.lib
+nppig.lib
+nppim.lib
+nppist.lib
+nppisu.lib
+nppitc.lib
+npps.lib
+press Apply
+
