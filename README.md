@@ -62,6 +62,7 @@ press Apply
 3. Configuration properties -> Linker:
 General -> Additional Include Directories -> 
 C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib ; C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\lib\x64
+
 Input -> Additional dependencies -> scroll down -> edit -> opencv_world455.lib (or whatever opencv version opencv_worldxxx.lib you have in C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib)
 
 press Apply
@@ -102,8 +103,11 @@ target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
 ## Display messages for debugging
 message("--------------- OpenCV_INCLUDE_DIRS: " ${OpenCV_INCLUDE_DIRS})
+
 message("--------------- OpenCV_LIBS: " ${OpenCV_LIBS})
+
 message("--------------- PROJECT_NAME: " ${PROJECT_NAME})
+
 message("--------------- CMAKE_BUILD_TYPE: " ${CMAKE_BUILD_TYPE})
 
 
