@@ -56,11 +56,14 @@ right click on the project -> properties:
 2. Configuration properties -> C/C++:
 include Directories -> scroll down -> edit -> create new line -> 
 C:\Users\hadar\Documents\opencvBuilds\build\install\include ; C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\include\
+
 press Apply
+
 3. Configuration properties -> Linker:
 General -> Additional Include Directories -> 
 C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib ; C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\lib\x64
 Input -> Additional dependencies -> scroll down -> edit -> opencv_world455.lib (or whatever opencv version opencv_worldxxx.lib you have in C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib)
+
 press Apply
 
 For cuda I also added every npp.lib after I had linker error which had npp in it:
@@ -77,6 +80,7 @@ nppist.lib
 nppisu.lib
 nppitc.lib
 npps.lib
+
 press Apply
 
 
