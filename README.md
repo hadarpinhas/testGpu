@@ -46,11 +46,10 @@ open vs code, install extensions: c/c++ and cmake tools, might need to restart
 first time, press ctrl+shift+p for command pallete and search cmake:configure, choose vs 2019 86 x64.
 then, ctrl+shift+p search cmake: quick start -> project name: testgpucpp -> c++ -> executable.  
 
-########################################################################################################
 
-In winodws, using visual studio, there were issues using cmakelists.txt with vs code, only visual studio 19 works reliably.
+## In winodws, using visual studio, there were issues using cmakelists.txt with vs code, only visual studio 19 works reliably.
 
-#################################### working on visual studio 2019:####################################
+# working on visual studio 2019:
 
 right click on the project -> properties:
 1. On top set Configuration: Active(Release), Platform: Active(x64)
@@ -65,46 +64,46 @@ Input -> Additional dependencies -> scroll down -> edit -> opencv_world455.lib (
 press Apply
 
 For cuda I also added every npp.lib after I had linker error which had npp in it:
-#cuda.lib
-# cudart.lib
-# nppc.lib
-# nppial.lib
-# nppicc.lib
-# nppidei.lib
-# nppif.lib
-# nppig.lib
-# nppim.lib
-# nppist.lib
-# nppisu.lib
-# nppitc.lib
-# npps.lib
+cuda.lib
+cudart.lib
+nppc.lib
+nppial.lib
+nppicc.lib
+nppidei.lib
+nppif.lib
+nppig.lib
+nppim.lib
+nppist.lib
+nppisu.lib
+nppitc.lib
+npps.lib
 press Apply
 
 
-########################### example CMakeLists.txt ########################################
+# example CMakeLists.txt
 
 that works after many tries on the cmake versions: 3.0 3.5 3.26, but have to be below 3.27 because of deprecated package
 
 cmake_minimum_required(VERSION 3.0)
 project(testgpuopencv)
 
-# Find OpenCV package
+## Find OpenCV package
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-# Add executable
+## Add executable
 add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
-# Display messages for debugging
+## Display messages for debugging
 message("--------------- OpenCV_INCLUDE_DIRS: " ${OpenCV_INCLUDE_DIRS})
 message("--------------- OpenCV_LIBS: " ${OpenCV_LIBS})
 message("--------------- PROJECT_NAME: " ${PROJECT_NAME})
 message("--------------- CMAKE_BUILD_TYPE: " ${CMAKE_BUILD_TYPE})
 
 
-############################ another CMakeLists.txt example ##########################################
+# another CMakeLists.txt example
   
 '''make sure the VERSION < 3.27 (may have to play with the differnet versions), any higher will lead to deprecation issues such as
  Could not find a package configuration file provided by "CUDA" (requested
@@ -131,7 +130,7 @@ include(CPack)
 
 
 
-#################################### main.cpp example ########################################
+# main.cpp example
 
 #include <opencv2/opencv.hpp> // Include the main OpenCV header
 #include <iostream>           // Include for std::cout
