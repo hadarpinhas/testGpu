@@ -23,10 +23,13 @@ once finished, choose from search:
 press configure
 
 choose from search
+
 6. cuda_fast_math
-7. cuda_arch_bin
+   
+8. cuda_arch_bin
 	6.1 (for GTX 1050)
-8. cmake_configuration_types
+   
+10. cmake_configuration_types
 	Release
 
 press configure
