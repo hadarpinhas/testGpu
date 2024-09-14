@@ -1,6 +1,5 @@
 # Windows installation opencv cuda cpp instructions
-
-instal CMake, during installation choose add to path or after add to system environmental variable, cmake:  C:\Program Files\CMake\bin
+Install CMake (during installation choose add to path or after add to system environmental variable, cmake:  C:\Program Files\CMake\bin)
 
 Trying to install cuda 11.8 with cudnn 9.1.1 installer (in the installer only 11.8) and adding to path the bin dir:
 C:\Program Files\NVIDIA\CUDNN\v9.1\bin\11.8
@@ -56,7 +55,7 @@ os.add_dll_directory(r"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\
 
 os.add_dll_directory(r"C:\opencv\install\x64\vc16\bin")  # For OpenCV DLLs
 
-"ImportError: dynamic module does not define module export function (PyInit_vmd_lib)"
+"ImportError: dynamic module does not define module export function (PyInit_vmd_lib)" - after building .pyd (dll) with visual studio 2019
 
 "ImportError: DLL load failed while importing cv2: The specified module could not be found."
 
