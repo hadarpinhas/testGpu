@@ -49,6 +49,7 @@ first time, press ctrl+shift+p for command pallete and search cmake:configure, c
 then, ctrl+shift+p search cmake: quick start -> project name: testgpucpp -> c++ -> executable.
 
 ## python cv2 (vscode on windows)
+
 os.add_dll_directory(r"C:\Program Files\NVIDIA\CUDNN\v9.1\bin\11.8")  # For cuDNN DLLs
 
 os.add_dll_directory(r"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\bin")  # For cuda DLLs
@@ -57,9 +58,15 @@ os.add_dll_directory(r"C:\opencv\install\x64\vc16\bin")  # For OpenCV DLLs
 
 These folders, that contain dlls, were added to solve the following errors:
 
-"ImportError: dynamic module does not define module export function (PyInit_vmd_lib)" - after building .pyd (dll) with visual studio 2019
-
 "ImportError: DLL load failed while importing cv2: The specified module could not be found."
+
+### creating python package (dll) .pyd:
+
+project -> properties: General, Configuration Type: .dll
+
+Linker -> General, Output File: $(OutDir)$(TargetName).pyd
+
+"ImportError: dynamic module does not define module export function (PyInit_vmd_lib)" - after building .pyd (dll) with visual studio 2019
 
 ## In winodws, using visual studio, there were issues using cmakelists.txt with vs code, only visual studio 19 works reliably.
 
