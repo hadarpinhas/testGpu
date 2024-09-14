@@ -47,7 +47,9 @@ C:\Users\hadar\Documents\opencvBuilds\build\install\x64\vc16\lib
 
 open vs code, install extensions: c/c++ and cmake tools, might need to restart
 first time, press ctrl+shift+p for command pallete and search cmake:configure, choose vs 2019 86 x64.
-then, ctrl+shift+p search cmake: quick start -> project name: testgpucpp -> c++ -> executable.  
+then, ctrl+shift+p search cmake: quick start -> project name: testgpucpp -> c++ -> executable.
+
+for python cv2 in vscode on windows: os.add_dll_directory(r"C:\Program Files\NVIDIA\CUDNN\v9.1\bin\11.8"), to resolve error: "ImportError: DLL load failed while importing cv2: The specified module could not be found."
 
 
 ## In winodws, using visual studio, there were issues using cmakelists.txt with vs code, only visual studio 19 works reliably.
