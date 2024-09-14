@@ -55,7 +55,7 @@ os.add_dll_directory(r"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\
 
 os.add_dll_directory(r"C:\opencv\install\x64\vc16\bin")  # For OpenCV DLLs
 
-To mitigate:
+These dlls were added to solve the following errors:
 
 "ImportError: dynamic module does not define module export function (PyInit_vmd_lib)" - after building .pyd (dll) with visual studio 2019
 
